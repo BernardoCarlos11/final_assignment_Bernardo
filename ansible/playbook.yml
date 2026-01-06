@@ -2,6 +2,8 @@
 - name: Install and Configure Nginx
   hosts: webservers
   become: yes
+  vars_files:         
+    - vault.yml      #Adicionei forma de o ficheiro/vault que deve ir buscar para aceder a password 
   tasks:
     - name: Update apt cache
       apt:
@@ -35,6 +37,10 @@
               <h1>Success! Nginx is running on your Azure VM.</h1>
               <p>Provisioned with Terraform and configured with Ansible.</p>
           </body>
+          </html>
+        dest: /var/www/html/index.html
+        mode: '0644'
+
           </html>
         dest: /var/www/html/index.html
         mode: '0644'
